@@ -1,0 +1,40 @@
+{
+  "name": "project-name",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.1.0",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "generate": "nuxt generate",
+    "lint": "eslint .",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "nuxt": "^3.14.1592",
+    "@nuxt/devtools": "latest",
+    "vue": "^3.5.12",
+    "@vueuse/core": "^10.10.0",
+    "zustand": "^4.5.2",
+    "@neondatabase/serverless": "^0.9.4",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.38",
+    "autoprefixer": "^10.4.18",
+    "daisyui": "^4.12.24",
+    "vitest": "^1.6.1",
+    "@vitest/ui": "^1.6.1",
+    "@vitest/coverage-v8": "^1.6.1",
+    "@vue/test-utils": "^2.4.4",
+    "happy-dom": "^12.10.3",
+    "husky": "^9.1.7",
+    "typescript": "^5.3.3",
+    "vue-tsc": "^1.8.27"
+  }
+}
