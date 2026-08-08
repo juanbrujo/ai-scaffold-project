@@ -93,7 +93,7 @@ Example Vue component showcasing best practices.
 - [Nuxt Documentation](https://nuxt.com)
 - [Vue 3 Guide](https://vuejs.org)
 - [Vitest Docs](https://vitest.dev)
-- [Zustand Docs](https://github.com/pmndrs/zustand)
+- [Pinia Docs](https://pinia.vuejs.org/)
 
 ## 🚀 Quick Commands
 

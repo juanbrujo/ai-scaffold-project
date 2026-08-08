@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================================
-# 🚀 Nuxt3 + Tailwind + DaisyUI + Zustand + Vitest Project Initializer
+# 🚀 Nuxt 4 + Tailwind 4 + DaisyUI 5 + Pinia + Vitest Project Initializer
 # ============================================================================
 # Interactive script to initialize a new project from this scaffold
 # ============================================================================
@@ -68,7 +68,7 @@ confirm() {
 # Main Script
 # ============================================================================
 
-print_header "🚀 Nuxt3 Scaffold Project Initializer"
+print_header "🚀 Nuxt 4 Scaffold Project Initializer"
 
 # ============================================================================
 # Step 1: Get Project Name
@@ -99,16 +99,16 @@ echo ""
 print_step "Project Stack Includes:"
 echo ""
 echo -e "  ${BOLD}Frontend:${NC}"
-echo -e "    📦 Nuxt3 v3.14+          (Full-stack framework)"
+echo -e "    📦 Nuxt 4 v4.5+          (Full-stack framework)"
 echo -e "    🎨 Vue3 v3.5+            (UI library)"
 echo -e "    🔷 TypeScript 5.3+       (Type safety)"
 echo ""
 echo -e "  ${BOLD}Styling:${NC}"
-echo -e "    🎨 Tailwind CSS 3.4+     (Utility-first CSS)"
+echo -e "    🎨 Tailwind CSS 4.3+     (Utility-first CSS)"
 echo -e "    🌸 DaisyUI 4.12+         (Component library)"
 echo ""
 echo -e "  ${BOLD}State Management:${NC}"
-echo -e "    🏪 Zustand 4.5+          (State management)"
+echo -e "    🏪 Pinia 3.0+           (State management)"
 echo ""
 echo -e "  ${BOLD}Testing & Quality:${NC}"
 echo -e "    ✅ Vitest 1.6+           (Test framework)"
@@ -164,7 +164,7 @@ fi
 
 print_step "Updating CLAUDE.md..."
 if sed -i '' "s/Project Name - Development Guide/$PROJECT_NAME - Development Guide/" CLAUDE.md 2>/dev/null && \
-   sed -i '' "s/> This is a Nuxt3/> $PROJECT_NAME is a Nuxt3/" CLAUDE.md 2>/dev/null; then
+   sed -i '' "s/> This is a Nuxt 4/> $PROJECT_NAME is a Nuxt 4/" CLAUDE.md 2>/dev/null; then
     print_success "CLAUDE.md updated"
 else
     print_error "Failed to update CLAUDE.md"
@@ -247,9 +247,9 @@ echo -e "${GREEN}Your project ${BOLD}\"$PROJECT_NAME\"${NC}${GREEN} is ready! �
 echo ""
 
 print_info "Project created with:"
-echo "  ✓ Nuxt3 + Vue3 + TypeScript"
+echo "  ✓ Nuxt 4 + Vue 3 + TypeScript"
 echo "  ✓ Tailwind CSS + DaisyUI"
-echo "  ✓ Zustand state management"
+echo "  ✓ Pinia state management"
 echo "  ✓ Vitest (70% coverage threshold)"
 echo "  ✓ Husky Git hooks (pre-commit, pre-push)"
 echo "  ✓ NeonDB/PostgreSQL support"

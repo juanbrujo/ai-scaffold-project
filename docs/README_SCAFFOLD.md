@@ -1,13 +1,13 @@
-# Nuxt3 + Tailwind + DaisyUI + Zustand + Vitest Scaffold
+# Nuxt 4 + Tailwind 4 + DaisyUI 5 + Pinia + Vitest Scaffold
 
-Production-ready scaffold for starting new Nuxt3 projects with complete tooling, testing, quality gates, and documentation.
+Production-ready scaffold for starting new Nuxt 4 projects with complete tooling, testing, quality gates, and documentation.
 
 ## What's Included
 
 ### ⚡ Framework & Tools
-- **Nuxt3** + Vue3 + TypeScript
-- **Tailwind CSS 3** + **DaisyUI** (design system)
-- **Zustand** (state management)
+- **Nuxt 4** + Vue 3 + TypeScript
+- **Tailwind CSS 4** + **DaisyUI 5** (design system)
+- **Pinia** (state management)
 - **Vitest** (testing + 70% coverage threshold)
 - **Vite** (build tool)
 - **NeonDB/PostgreSQL** (database)
@@ -65,7 +65,7 @@ Copy individual files from this scaffold to your new project:
 **Essential files to copy:**
 - `package.json` — Dependencies and scripts
 - `nuxt.config.ts` — Nuxt configuration
-- `tailwind.config.ts` — Tailwind setup
+- `app/assets/css/main.css` — Tailwind 4 + DaisyUI setup (CSS-first)
 - `tsconfig.json` — TypeScript config
 - `vitest.config.ts` — Test configuration
 - `postcss.config.ts` — PostCSS setup
@@ -84,7 +84,7 @@ Copy individual files from this scaffold to your new project:
 scaffold/
 ├── package.json                        # Dependencies (update name, version)
 ├── nuxt.config.ts                      # Nuxt configuration
-├── tailwind.config.ts                  # Tailwind + DaisyUI config
+├── eslint.config.mjs                   # ESLint 9 flat config
 ├── tsconfig.json                       # TypeScript config
 ├── vitest.config.ts                    # Test configuration
 ├── postcss.config.ts                   # PostCSS setup
@@ -151,8 +151,8 @@ pnpm dev
 
 ### Configuration Files
 - **package.json** — NPM/pnpm dependencies and scripts
-- **nuxt.config.ts** — Nuxt3 configuration, Tailwind integration
-- **tailwind.config.ts** — Tailwind + DaisyUI theme setup
+- **nuxt.config.ts** — Nuxt 4 configuration, Tailwind integration
+- **app/assets/css/main.css** — Tailwind 4 + DaisyUI themes (CSS-first, no JS config)
 - **tsconfig.json** — TypeScript strict mode configuration
 - **vitest.config.ts** — Vitest testing setup with coverage (70% threshold)
 - **postcss.config.ts** — PostCSS plugin configuration
@@ -193,19 +193,19 @@ pnpm test:coverage    # Coverage report
 
 ## Technologies Explained
 
-### Nuxt3 + Vue3
+### Nuxt 4 + Vue 3
 - Modern full-stack meta-framework
 - File-based routing (pages/)
 - Server-side rendering ready
 - TypeScript support built-in
 
-### Tailwind CSS 3 + DaisyUI
+### Tailwind CSS 4 + DaisyUI 5
 - Utility-first CSS framework
 - Pre-built component library (DaisyUI)
 - Zero runtime CSS-in-JS
 - Full design system support
 
-### Zustand
+### Pinia
 - Lightweight state management
 - Minimal boilerplate
 - Great TypeScript support
@@ -253,7 +253,7 @@ npm install -g pnpm
 ```
 
 ### Tests failing after setup
-Ensure you've run `pnpm install` and have Node 18+.
+Ensure you have run `pnpm install` and are on a supported Node version (see `.nvmrc` — Nuxt 4.5 needs `^22.19.0 || ^24.11.0 || >=26.0.0`).
 
 ### Husky hooks not running
 ```bash
@@ -302,7 +302,7 @@ If you improve the scaffold, consider:
 - [Vue 3 Docs](https://vuejs.org)
 - [Tailwind Docs](https://tailwindcss.com)
 - [DaisyUI Docs](https://daisyui.com)
-- [Zustand Repo](https://github.com/pmndrs/zustand)
+- [Pinia Repo](https://github.com/vuejs/pinia)
 - [Vitest Docs](https://vitest.dev)
 
 ## License

@@ -1,37 +1,12 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "jsx": "preserve",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "rootDir": "./",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./*"],
-      "#app": ["./node_modules/nuxt/dist/app"],
-      "#build": ["./.nuxt"]
-    },
-    "types": ["vitest/globals", "node"]
-  },
-  "include": [
-    ".nuxt/nuxt.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.vue"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
+  // Nuxt 4 generates one tsconfig per context (app / server / shared / node).
+  // This root file only wires up the references; edit `typescript.tsConfig`
+  // in nuxt.config.ts to change compiler options.
+  "files": [],
+  "references": [
+    { "path": "./.nuxt/tsconfig.app.json" },
+    { "path": "./.nuxt/tsconfig.server.json" },
+    { "path": "./.nuxt/tsconfig.shared.json" },
+    { "path": "./.nuxt/tsconfig.node.json" }
   ]
 }

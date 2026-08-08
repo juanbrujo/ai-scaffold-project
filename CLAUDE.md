@@ -1,6 +1,6 @@
 # Project Name - Development Guide
 
-> This is a Nuxt3 + Tailwind + DaisyUI + Zustand + Vitest scaffold project.
+> This is a Nuxt 4 + Tailwind 4 + DaisyUI 5 + Pinia + Vitest scaffold project.
 > Replace "Project Name" with your actual project name.
 
 ## ⚡ Important: Always Use RTK
@@ -14,53 +14,111 @@ For all CLI operations use `rtk` to optimize token usage:
 
 ## Tech Stack
 
-- **Framework**: Nuxt3 + Vue3 + TypeScript
-- **Styling**: Tailwind CSS 3 + DaisyUI
-- **State**: Zustand
-- **Testing**: Vitest + Coverage (70% threshold)
-- **Database**: NeonDB (PostgreSQL)
+- **Framework**: Nuxt 4 + Vue 3 + TypeScript
+- **Styling**: Tailwind CSS 4 + DaisyUI 5
+- **State**: Pinia (official Vue/Nuxt store)
+- **Testing**: Vitest 4 + `@nuxt/test-utils` + Coverage (70% threshold)
+- **Linting**: ESLint 9 flat config via `@nuxt/eslint`
+- **Database**: NeonDB (PostgreSQL) over HTTP
 - **Build**: Vite
 - **Quality Gates**: Husky (pre-commit, pre-push hooks)
+
+## Node version
+
+`package.json` pins `engines.node` to `^22.19.0 || ^24.11.0 || >=26.0.0` — the
+range Nuxt 4.5 requires. Every other dependency is a subset of it, so Nuxt is
+what sets the floor.
+
+`.nvmrc` pins **24.19.0** (current active LTS):
+
+```bash
+nvm use          # reads .nvmrc
+node -v          # v24.19.0
+```
+
+Odd-numbered lines (23, 25, …) are **not** supported: they are short-lived,
+never become LTS, and are excluded from the range above. Things may appear to
+work on them, but you are off the tested matrix.
+
+pnpm only **warns** on an engine mismatch. To make it a hard failure, add to
+`.pnpmrc`:
+
+```
+engine-strict=true
+```
 
 ## Project Commands
 
 ```bash
 pnpm dev              # Start dev server (http://localhost:3000)
 pnpm build            # Production build
+pnpm preview          # Serve the production build
 pnpm test             # Run tests (watch mode)
+pnpm test:run         # Run tests once — use this in CI and hooks
 pnpm test:ui          # Vitest UI dashboard
-pnpm test:coverage    # Generate coverage report
+pnpm test:coverage    # Coverage report + 70% threshold gate
+pnpm lint             # ESLint
+pnpm lint:fix         # ESLint with --fix
+pnpm typecheck        # vue-tsc via nuxt typecheck
 ```
 
 ## Key Directories
 
-- `pages/` - Route components (auto-routed by Nuxt)
-- `components/` - Reusable Vue components
-- `composables/` - Composition API hooks
-- `stores/` - Zustand state stores
-- `server/api/` - Backend API routes
-- `server/utils/db.ts` - Database connection utility
+Nuxt 4 puts client-side code under `app/`. The `~` alias resolves to `app/`,
+and `~~` resolves to the project root.
+
+- `app/app.vue` - Root component
+- `app/pages/` - Route components (auto-routed by Nuxt)
+- `app/components/` - Reusable Vue components (auto-imported)
+- `app/composables/` - Composition API hooks (auto-imported)
+- `app/layouts/` - Layout components
+- `app/stores/` - Pinia state stores (auto-imported)
+- `app/assets/css/main.css` - Tailwind entry point **and** Tailwind config
+- `server/api/` - Backend API routes (Nitro)
+- `server/utils/db.ts` - Database connection utility (auto-imported server-side)
+- `shared/` - Types and helpers usable from both client and server
 - `tests/` - Vitest test files
-- `docs/` - Documentation (guides, design system, setup)
 - `migrations/` - Database schema .sql files for NeonDB
+- `docs/` - Documentation (guides, design system, setup)
 
 ## Database (NeonDB/PostgreSQL)
 
 ### Connection
-- Configured via `server/utils/db.ts`
-- Use `getDb()` function to get postgres client
-- Set `DATABASE_URL` in `.env.local`
+- Configured via `server/utils/db.ts`, exposed as `getDb()` (auto-imported in `server/`)
+- Uses `@neondatabase/serverless` over **HTTP**, so it is safe on serverless/edge
+  runtimes where a long-lived TCP pool would not survive between invocations
+- Set `DATABASE_URL` in `.env`; it is read through `runtimeConfig.databaseUrl`
+
+```typescript
+const sql = getDb()
+const users = await sql`SELECT id, email FROM users WHERE id = ${id}`
+```
+
+Interpolated values become **bound parameters**, not string concatenation —
+this is not SQL-injectable. Never build queries with `+` or `${}` inside a
+plain string.
 
 ### Running Migrations
 ```bash
-psql $DATABASE_URL < migrations/001_create_users_table.sql
+psql $DATABASE_URL -f migrations/001_create_users_table.sql
 ```
 
-See `migrations/README.md` for complete guide.
+See `migrations/README.md` for the complete guide.
+
+### Testing server code
+`server/` is intentionally excluded from the coverage threshold: those handlers
+need a live `DATABASE_URL`. Cover them with integration tests
+(`@nuxt/test-utils/e2e`) against a real database rather than by loosening the
+threshold in `vitest.config.ts`.
 
 ## Styling Guidelines (IMPORTANT)
 
 **ALWAYS use Tailwind + DaisyUI. See `docs/DESIGN.md` for complete rules.**
+
+> **Tailwind 4 is CSS-first — there is no `tailwind.config.ts`.** Themes,
+> plugins and content sources all live in `app/assets/css/main.css` via
+> `@import "tailwindcss"`, `@plugin "daisyui"` and `@source`. Do not recreate
+> a JS config file; extend the CSS one.
 
 ### DO ✅
 - Use DaisyUI components: `btn`, `card`, `alert`, `modal`, `input`, `navbar`, etc.
@@ -80,25 +138,47 @@ See `migrations/README.md` for complete guide.
 
 ## State Management
 
-- Use Zustand stores in `stores/` directory
-- Import stores with `useStore()` pattern
-- Stores are defined with `create<StoreType>()` factory
+- Use Pinia stores in `stores/` directory (auto-imported by `@pinia/nuxt`)
+- Prefer the **setup store** syntax: `defineStore('id', () => { ... })`
+- Import `ref`/`computed` explicitly from `vue` so stores also work under plain Vitest
+- Consume in components with `const store = useCounterStore()`
+- Destructure reactive state with `storeToRefs(store)` (actions destructure directly)
 
 Example:
 ```typescript
-// stores/app.ts
-import { create } from 'zustand'
+// stores/counter.ts
+import { computed, ref } from 'vue'
+import { defineStore } from 'pinia'
 
-interface AppState {
-  count: number
-  increment: () => void
-}
+export const useCounterStore = defineStore('counter', () => {
+  const count = ref(0)
+  const double = computed(() => count.value * 2)
 
-export const useAppStore = create<AppState>((set) => ({
-  count: 0,
-  increment: () => set((state) => ({ count: state.count + 1 }))
-}))
+  function increment() {
+    count.value++
+  }
+
+  return { count, double, increment }
+})
 ```
+
+In a component:
+```vue
+<script setup lang="ts">
+import { storeToRefs } from 'pinia'
+
+const counter = useCounterStore()
+const { count, double } = storeToRefs(counter)
+</script>
+```
+
+In tests, activate a fresh Pinia per test:
+```typescript
+beforeEach(() => setActivePinia(createPinia()))
+```
+
+> Do **not** use Zustand here — it is a React-oriented library. Pinia is the
+> official Vue/Nuxt store and integrates with SSR, devtools, and auto-imports.
 
 ## Testing & Quality Gates
 

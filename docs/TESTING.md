@@ -52,7 +52,7 @@ tests/
 │   ├── utils/
 │   │   └── helpers.test.ts          # Tests for helper functions
 │   ├── stores/
-│   │   └── app.test.ts              # Tests for Zustand stores
+│   │   └── app.test.ts              # Tests for Pinia stores
 │   ├── composables/
 │   │   └── useApi.test.ts           # Tests for composables
 │   └── example.test.ts              # Basic example tests
@@ -103,20 +103,27 @@ describe('classNames', () => {
 
 ```typescript
 // stores/app.ts
-import { create } from 'zustand'
+import { ref } from 'vue'
+import { defineStore } from 'pinia'
 
-export const useAppStore = create<AppState>((set) => ({
-  theme: 'light',
-  setTheme: (theme) => set({ theme })
-}))
+export const useAppStore = defineStore('app', () => {
+  const theme = ref<'light' | 'dark'>('light')
 
-// tests/unit/stores/app.test.ts
+  function setTheme(next: 'light' | 'dark') {
+    theme.value = next
+  }
+
+  return { theme, setTheme }
+})
+
+// tests/stores/app.test.ts
 import { describe, it, expect, beforeEach } from 'vitest'
+import { createPinia, setActivePinia } from 'pinia'
 import { useAppStore } from '~/stores/app'
 
 describe('App Store', () => {
   beforeEach(() => {
-    useAppStore().setTheme('light') // Reset state
+    setActivePinia(createPinia()) // Fresh store per test
   })
 
   it('should initialize with light theme', () => {
@@ -292,7 +299,7 @@ describe('Test Suite', () => {
 - **Don't create dependencies between tests** — Each test should be independent
 - **Don't skip tests** — Remove them or fix them
 - **Don't use hardcoded values** — Use variables or test data
-- **Don't test framework code** — Trust Vue, Nuxt, Zustand
+- **Don't test framework code** — Trust Vue, Nuxt, Pinia
 - **Don't write too many assertions** — One or few per test
 
 ## Test Organization Pattern

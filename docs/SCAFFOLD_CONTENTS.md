@@ -7,8 +7,8 @@ Complete list of files and directories included in this scaffold.
 ```
 scaffold/
 ├── package.json                    # NPM dependencies + scripts (update name)
-├── nuxt.config.ts                  # Nuxt3 configuration
-├── tailwind.config.ts              # Tailwind CSS + DaisyUI config
+├── nuxt.config.ts                  # Nuxt 4 configuration
+├── eslint.config.mjs               # ESLint 9 flat config
 ├── tsconfig.json                   # TypeScript strict mode config
 ├── vitest.config.ts                # Vitest + coverage config (70% threshold)
 ├── postcss.config.ts               # PostCSS plugins config
@@ -70,7 +70,7 @@ migrations/
 pages/                             # Nuxt auto-routes these
 components/                        # Reusable Vue components
 composables/                       # Composition API hooks
-stores/                            # Zustand stores
+stores/                            # Pinia stores
 server/
   ├── api/                         # API routes
   └── utils/                       # Utilities (db.ts connection)
@@ -94,7 +94,7 @@ utils/                             # Utility functions
 - **12+** directories for your code
 
 ### What You Get Immediately
-✅ Complete Nuxt3 setup (dev, build, preview, generate)
+✅ Complete Nuxt 4 setup (dev, build, preview, generate)
 ✅ Tailwind + DaisyUI integrated (no hex colors allowed)
 ✅ TypeScript strict mode enabled
 ✅ Vitest configured (70% coverage threshold)
@@ -118,7 +118,6 @@ utils/                             # Utility functions
 Configuration:
   package.json               ~1.5 KB
   nuxt.config.ts            ~0.2 KB
-  tailwind.config.ts         ~0.4 KB
   tsconfig.json              ~0.8 KB
   vitest.config.ts           ~1.2 KB
   postcss.config.ts          ~0.1 KB
@@ -142,7 +141,7 @@ Total: ~62 KB (mostly documentation)
 
 ### Production Dependencies (7)
 - nuxt, vue, @vueuse/core
-- zustand (state management)
+- pinia (state management)
 - postgres, @neondatabase/serverless (database)
 - @nuxt/devtools
 

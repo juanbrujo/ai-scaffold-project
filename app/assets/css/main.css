@@ -1,0 +1,11 @@
+/* Tailwind CSS 4 is CSS-first: no tailwind.config.ts, configure here. */
+@import "tailwindcss";
+
+/* DaisyUI 5 is loaded as a Tailwind plugin, not a JS config entry. */
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+/* Tell Tailwind where to scan for class names (replaces `content` in v3). */
+@source "../../../app/**/*.{vue,js,ts}";
+@source "../../../server/**/*.{js,ts}";

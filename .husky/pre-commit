@@ -1,5 +1,2 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-# Run tests before commit
-pnpm test
+# Run tests before commit (single-run, not watch mode)
+pnpm test:run

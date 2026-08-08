@@ -17,7 +17,7 @@ The new `INIT_NEW_PROJECT.sh` script is fully interactive with colors, emojis, a
 
 ```
 ═══════════════════════════════════════════════════════════
-  🚀 Nuxt3 Scaffold Project Initializer
+  🚀 Nuxt 4 Scaffold Project Initializer
 ═══════════════════════════════════════════════════════════
 
 → What is your project name?
@@ -26,16 +26,16 @@ The new `INIT_NEW_PROJECT.sh` script is fully interactive with colors, emojis, a
 → Project Stack Includes:
 
   Frontend:
-    📦 Nuxt3 v3.14+          (Full-stack framework)
+    📦 Nuxt 4 v4.5+          (Full-stack framework)
     🎨 Vue3 v3.5+            (UI library)
     🔷 TypeScript 5.3+       (Type safety)
 
   Styling:
-    🎨 Tailwind CSS 3.4+     (Utility-first CSS)
+    🎨 Tailwind CSS 4.3+     (Utility-first CSS)
     🌸 DaisyUI 4.12+         (Component library)
 
   State Management:
-    🏪 Zustand 4.5+          (State management)
+    🏪 Pinia 3.0+           (State management)
 
   Testing & Quality:
     ✅ Vitest 1.6+           (Test framework)
@@ -105,9 +105,9 @@ y
 Your project "My Awesome Blog" is ready! 🎉
 
 ℹ Project created with:
-  ✓ Nuxt3 + Vue3 + TypeScript
+  ✓ Nuxt 4 + Vue 3 + TypeScript
   ✓ Tailwind CSS + DaisyUI
-  ✓ Zustand state management
+  ✓ Pinia state management
   ✓ Vitest (70% coverage threshold)
   ✓ Husky Git hooks (pre-commit, pre-push)
   ✓ NeonDB/PostgreSQL support

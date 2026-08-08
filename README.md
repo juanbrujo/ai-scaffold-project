@@ -6,9 +6,9 @@ Brief description of what this project does.
 
 ## Tech Stack
 
-- **Frontend**: Nuxt3, Vue3, TypeScript
-- **Styling**: Tailwind CSS 3, DaisyUI
-- **State Management**: Zustand
+- **Frontend**: Nuxt 4, Vue 3, TypeScript
+- **Styling**: Tailwind CSS 4, DaisyUI 5
+- **State Management**: Pinia
 - **Testing**: Vitest (70% coverage threshold)
 - **Database**: NeonDB (PostgreSQL)
 - **Build Tool**: Vite
@@ -80,7 +80,7 @@ pnpm lint             # Lint code
 ├── pages/             # Routes (auto-routed by Nuxt)
 ├── components/        # Reusable Vue components
 ├── composables/       # Composition API hooks
-├── stores/            # Zustand state stores
+├── stores/            # Pinia state stores
 ├── server/
 │   ├── api/           # Backend API routes
 │   └── utils/         # Server utilities (db connection)
@@ -176,7 +176,7 @@ See `migrations/README.md` for complete migration guide.
 
 ## Styling
 
-Uses **Tailwind CSS 3** + **DaisyUI** for all styling.
+Uses **Tailwind CSS 4** + **DaisyUI 5** for all styling.
 
 - ✅ Use DaisyUI components: `btn`, `card`, `alert`, `modal`, etc.
 - ✅ Use Tailwind utilities: `flex`, `gap-4`, `p-6`, `text-lg`
@@ -224,7 +224,7 @@ pnpm preview
 - [Vue 3 Guide](https://vuejs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 - [DaisyUI Components](https://daisyui.com)
-- [Zustand](https://github.com/pmndrs/zustand)
+- [Pinia](https://pinia.vuejs.org/)
 - [Vitest](https://vitest.dev)
 
 ## License
