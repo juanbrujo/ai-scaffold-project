@@ -1,4 +1,4 @@
-# Respuestas - Design System
+# Design System
 
 ## Mission
 Create implementation-ready design guidance for Respuestas that ensures consistency, accessibility, and fast delivery using **Tailwind CSS + DaisyUI** as the single source of truth.
