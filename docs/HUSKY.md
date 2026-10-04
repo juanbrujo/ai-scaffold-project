@@ -104,7 +104,7 @@ cat .husky/pre-push
 ```
 ✗ FAIL  tests/unit/utils/helpers.test.ts
   ✓ classNames (2)
-    ✗ should handle edge cases (expected 'btn' to equal 'btn btn-primary')
+    ✗ should handle edge cases (expected 'inline-flex' to equal 'inline-flex bg-primary')
 
 Test Files  1 failed (1)
 Tests  1 failed (2)

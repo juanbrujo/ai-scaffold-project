@@ -1,148 +1,67 @@
-<!--
-  COMPONENT TEMPLATE
-
-  Use this template when creating new components.
-  Ensures consistency with Tailwind + DaisyUI design system.
-
-  ✅ DO: Use Tailwind utilities and DaisyUI classes
-  ❌ DON'T: Use raw hex colors, custom CSS, or other UI libraries
--->
-
+<!-- Copy this for a small stateful component. shadcn-vue UI pieces are auto-imported as Ui*. -->
 <template>
-  <div class="component-wrapper">
-    <!-- Example: DaisyUI card component -->
-    <div class="card bg-base-100 shadow-md">
-      <div class="card-body">
-        <!-- Example: Responsive heading with Tailwind -->
-        <h2 class="card-title text-lg md:text-xl lg:text-2xl">{{ title }}</h2>
+  <UiCard>
+    <UiCardHeader>
+      <UiCardTitle>{{ title }}</UiCardTitle>
+      <UiCardDescription>{{ description }}</UiCardDescription>
+    </UiCardHeader>
 
-        <!-- Example: Descriptive text with semantic tokens -->
-        <p class="text-base-content/60 text-sm">{{ description }}</p>
+    <UiCardContent class="space-y-4">
+      <input
+        v-model="value"
+        class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50"
+        type="text"
+        placeholder="Type here…"
+        :disabled="disabled"
+      >
 
-        <!-- Example: Input with focus states -->
-        <input
-          type="text"
-          placeholder="Type here…"
-          class="input input-bordered w-full focus:outline focus:outline-2 focus:outline-offset-2"
-          :disabled="isDisabled"
-        />
+      <UiAlert v-if="error" variant="destructive">
+        <UiAlertTitle>Something went wrong</UiAlertTitle>
+        <UiAlertDescription>{{ error }}</UiAlertDescription>
+      </UiAlert>
+    </UiCardContent>
 
-        <!-- Example: Button states (default, hover, disabled, loading) -->
-        <div class="card-actions justify-end gap-2 mt-4">
-          <button
-            class="btn btn-ghost"
-            @click="handleCancel"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary"
-            :disabled="isLoading || isDisabled"
-            :class="{ 'loading': isLoading }"
-            @click="handleSubmit"
-          >
-            {{ isLoading ? 'Processing...' : 'Submit' }}
-          </button>
-        </div>
-
-        <!-- Example: Error state with semantic color -->
-        <div v-if="error" class="alert alert-error mt-4">
-          <svg class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l-2-2m0 0l-2-2m2 2l2-2m-2 2l-2 2" />
-          </svg>
-          <span>{{ error }}</span>
-        </div>
-
-        <!-- Example: Success state -->
-        <div v-if="success" class="alert alert-success mt-4">
-          <svg class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
-          </svg>
-          <span>{{ success }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <UiCardFooter class="justify-end gap-2">
+      <UiButton type="button" variant="ghost" @click="reset">Cancel</UiButton>
+      <UiButton type="button" :disabled="disabled || isLoading" @click="submit">
+        {{ isLoading ? 'Processing…' : 'Submit' }}
+      </UiButton>
+    </UiCardFooter>
+  </UiCard>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-interface Props {
+withDefaults(defineProps<{
   title?: string
   description?: string
   disabled?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  title: 'Component Title',
-  description: 'Component description goes here',
+}>(), {
+  title: 'Component title',
+  description: 'Component description',
   disabled: false
 })
 
-const isLoading = ref(false)
-const isDisabled = ref(props.disabled)
+const value = ref('')
 const error = ref('')
-const success = ref('')
+const isLoading = ref(false)
 
-const handleCancel = () => {
+function reset() {
+  value.value = ''
   error.value = ''
-  success.value = ''
 }
 
-const handleSubmit = async () => {
+async function submit() {
   isLoading.value = true
   error.value = ''
-  success.value = ''
 
   try {
-    // Your logic here
-    success.value = 'Operation completed successfully!'
-  } catch (err) {
-    error.value = 'An error occurred. Please try again.'
+    // Add feature-specific work here.
+  } catch {
+    error.value = 'Please try again.'
   } finally {
     isLoading.value = false
   }
 }
 </script>
-
-<!--
-  STYLING RULES:
-
-  ✅ GOOD: Use Tailwind classes and DaisyUI components
-  - Spacing: p-4, gap-2, mt-4 (not custom pixel values)
-  - Colors: bg-base-100, text-error, border-base-300 (not #FF0000)
-  - States: focus:outline, disabled:, loading: (not custom :hover styles)
-  - Responsive: md:text-xl, lg:grid-cols-3 (mobile-first)
-
-  ❌ BAD: Avoid these patterns
-  - <style scoped> with custom CSS
-  - Inline style="color: #FF0000"
-  - Custom padding like style="padding: 23px"
-  - Importing Bootstrap, Material, or other UI libraries
-  - Using !important to override Tailwind
-
-  FOR MORE: See DESIGN.md for:
-  - Complete DaisyUI component examples
-  - Accessibility requirements
-  - Color token reference
-  - Spacing scale
-  - Anti-patterns guide
--->
-
-<style scoped>
-/*
-  OPTIONAL: Only add scoped styles if truly necessary.
-  Prefer Tailwind utilities. Document WHY custom CSS is needed.
-
-  Example of when custom CSS might be needed:
-  - Complex animations (transition: transform 300ms ease-in-out)
-  - Custom gradients (not available in Tailwind)
-  - Specific layout techniques (CSS Grid edge cases)
-
-  Even then, prefer Tailwind solutions first.
-*/
-.component-wrapper {
-  /* Use Tailwind instead: <div class="flex flex-col gap-4"> */
-}
-</style>

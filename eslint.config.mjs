@@ -12,5 +12,13 @@ export default withNuxt(
     rules: {
       'vue/multi-word-component-names': 'off'
     }
+  },
+  // shadcn-vue generates optional visual variant props without defaults.
+  // The components intentionally forward an omitted prop to their variants.
+  {
+    files: ['app/components/ui/**/*.vue'],
+    rules: {
+      'vue/require-default-prop': 'off'
+    }
   }
 )

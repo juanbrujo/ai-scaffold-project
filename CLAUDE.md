@@ -1,6 +1,6 @@
 # Project Name - Development Guide
 
-> This is a Nuxt 4 + Tailwind 4 + DaisyUI 5 + Pinia + Vitest scaffold project.
+> This is a Nuxt 4 + Tailwind 4 + shadcn-vue + Pinia + Vitest scaffold project.
 > Replace "Project Name" with your actual project name.
 
 ## ⚡ Important: Always Use RTK
@@ -15,7 +15,7 @@ For all CLI operations use `rtk` to optimize token usage:
 ## Tech Stack
 
 - **Framework**: Nuxt 4 + Vue 3 + TypeScript
-- **Styling**: Tailwind CSS 4 + DaisyUI 5
+- **Styling**: Tailwind CSS 4 + shadcn-vue (Reka UI)
 - **State**: Pinia (official Vue/Nuxt store)
 - **Testing**: Vitest 4 + `@nuxt/test-utils` + Coverage (70% threshold)
 - **Linting**: ESLint 9 flat config via `@nuxt/eslint`
@@ -113,19 +113,19 @@ threshold in `vitest.config.ts`.
 
 ## Styling Guidelines (IMPORTANT)
 
-**ALWAYS use Tailwind + DaisyUI. See `docs/DESIGN.md` for complete rules.**
+**ALWAYS use Tailwind + shadcn-vue. See `docs/DESIGN.md` for complete rules.**
 
-> **Tailwind 4 is CSS-first — there is no `tailwind.config.ts`.** Themes,
-> plugins and content sources all live in `app/assets/css/main.css` via
-> `@import "tailwindcss"`, `@plugin "daisyui"` and `@source`. Do not recreate
-> a JS config file; extend the CSS one.
+> **Tailwind 4 is CSS-first — there is no `tailwind.config.ts`.** Theme tokens,
+> plugins and content sources live in `app/assets/css/main.css`. shadcn-vue
+> configuration lives in `components.json`; add generated components with
+> `pnpm dlx shadcn-vue@latest add <component>`.
 
 ### DO ✅
-- Use DaisyUI components: `btn`, `card`, `alert`, `modal`, `input`, `navbar`, etc.
-- Use Tailwind utilities: `flex`, `gap-4`, `p-6`, `text-lg`, `bg-base-100`
-- Use theme tokens: `text-base-content`, `bg-base-200`, `border-base-300`
+- Use shadcn-vue components: `UiButton`, `UiCard`, `UiAlert`, `UiDialog`, etc.
+- Use Tailwind utilities: `flex`, `gap-4`, `p-6`, `text-lg`, `bg-background`
+- Use theme tokens: `text-foreground`, `bg-card`, `border-border`
 - Use responsive prefixes: `md:w-1/2`, `lg:grid-cols-3`, `sm:p-4`
-- Leverage DaisyUI themes (`light`, `dark`)
+- Use the `.dark` class and semantic tokens for dark mode
 
 ### DON'T ❌
 - Use raw hex colors (`#FF0000`) → Use `text-error`, `bg-primary` instead
@@ -203,9 +203,9 @@ See `docs/HUSKY.md` for details.
 ## Design System Review Checklist
 
 When reviewing or creating components, verify:
-- ✅ No raw hex colors (#FF0000) — use theme tokens (text-error, bg-primary)
+- ✅ No raw hex colors (#FF0000) — use semantic theme tokens
 - ✅ No inline `<style>` with custom CSS — use Tailwind only
-- ✅ DaisyUI components used where available
+- ✅ shadcn-vue components used where available
 - ✅ Responsive design: `sm:`, `md:`, `lg:` prefixes present
 - ✅ Keyboard navigation works: Tab, Enter, Escape
 - ✅ Focus states visible (not hidden)
@@ -221,7 +221,7 @@ When reviewing or creating components, verify:
 - **`docs/DESIGN.md`** — Complete design system (rules, components, accessibility)
 - **`docs/TESTING.md`** — Vitest guide (unit tests, mocking, coverage)
 - **`docs/HUSKY.md`** — Git hooks automation (pre-commit, pre-push)
-- **`docs/TAILWIND_DAISYUI_CHEATSHEET.md`** — Quick lookup for common patterns
+- **`docs/TAILWIND_SHADCN_CHEATSHEET.md`** — Quick lookup for common patterns
 - **`docs/COMPONENT_TEMPLATE.vue`** — Example component with best practices
 
 ### In `/migrations/` folder:

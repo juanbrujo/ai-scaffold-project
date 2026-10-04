@@ -3,32 +3,31 @@ const theme = useColorTheme()
 </script>
 
 <template>
-  <div class="min-h-screen bg-base-100 text-base-content flex flex-col">
-    <header class="navbar bg-base-200 px-4">
-      <div class="flex-1">
-        <NuxtLink to="/" class="btn btn-ghost text-xl">Project Name</NuxtLink>
-      </div>
-      <div class="flex-none">
-        <button
+  <div class="flex min-h-screen flex-col bg-background text-foreground">
+    <header class="border-b bg-card px-4">
+      <nav class="container mx-auto flex h-14 items-center justify-between">
+        <NuxtLink to="/" class="rounded-md text-xl font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          Project Name
+        </NuxtLink>
+        <UiButton
           type="button"
-          class="btn btn-ghost btn-sm"
+          variant="ghost"
+          size="sm"
           :aria-pressed="theme.isDark.value"
           aria-label="Toggle color theme"
           @click="theme.toggle()"
         >
           {{ theme.isDark.value ? 'Light' : 'Dark' }}
-        </button>
-      </div>
+        </UiButton>
+      </nav>
     </header>
 
-    <main class="flex-1 container mx-auto p-4 sm:p-6 lg:p-8">
+    <main class="container mx-auto flex-1 p-4 sm:p-6 lg:p-8">
       <slot />
     </main>
 
-    <footer class="footer footer-center bg-base-200 text-base-content p-4">
-      <aside>
-        <p>Built with Nuxt 4 · Tailwind 4 · DaisyUI 5</p>
-      </aside>
+    <footer class="border-t bg-muted/40 p-4 text-center text-sm text-muted-foreground">
+      <p>Built with Nuxt 4 · Tailwind 4 · shadcn-vue</p>
     </footer>
   </div>
 </template>

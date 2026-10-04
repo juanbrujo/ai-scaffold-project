@@ -1,11 +1,16 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useColorTheme } from '~/composables/useColorTheme'
 
 describe('useColorTheme', () => {
   beforeEach(() => {
-    document.documentElement.removeAttribute('data-theme')
-    // The `nuxt` test environment only partially implements localStorage.
-    globalThis.localStorage?.clear?.()
+    document.documentElement.classList.remove('dark')
+    const values = new Map<string, string>()
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => values.get(key) ?? null,
+      setItem: (key: string, value: string) => values.set(key, value),
+      removeItem: (key: string) => values.delete(key),
+      clear: () => values.clear()
+    })
   })
 
   it('defaults to light', () => {
@@ -26,10 +31,10 @@ describe('useColorTheme', () => {
     expect(theme.isDark.value).toBe(false)
   })
 
-  it('writes the DaisyUI data-theme attribute', async () => {
+  it('writes the shadcn-vue dark class', async () => {
     const theme = useColorTheme()
     theme.toggle()
     await nextTick()
-    expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
+    expect(document.documentElement.classList.contains('dark')).toBe(true)
   })
 })

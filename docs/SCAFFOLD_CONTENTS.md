@@ -42,7 +42,7 @@ docs/
 ├── DESIGN.md                       # Complete design system guide
 ├── TESTING.md                      # Vitest + testing guide
 ├── HUSKY.md                        # Git hooks guide
-├── TAILWIND_DAISYUI_CHEATSHEET.md  # Quick reference for classes
+├── TAILWIND_SHADCN_CHEATSHEET.md   # Quick reference for classes
 └── COMPONENT_TEMPLATE.vue          # Example component
 ```
 
@@ -50,7 +50,7 @@ docs/
 - `DESIGN.md` (7.4 KB) — DO/DON'T rules, component examples, accessibility
 - `TESTING.md` (9.9 KB) — Test patterns, mocking, coverage setup
 - `HUSKY.md` (6.6 KB) — How hooks work, customization
-- `TAILWIND_DAISYUI_CHEATSHEET.md` (9.0 KB) — Copy-paste ready code
+- `TAILWIND_SHADCN_CHEATSHEET.md` — Copy-paste ready code
 - `COMPONENT_TEMPLATE.vue` (4.3 KB) — Component best practices
 
 **Total: ~37 KB of high-quality documentation**
@@ -95,7 +95,7 @@ utils/                             # Utility functions
 
 ### What You Get Immediately
 ✅ Complete Nuxt 4 setup (dev, build, preview, generate)
-✅ Tailwind + DaisyUI integrated (no hex colors allowed)
+✅ Tailwind + shadcn-vue integrated (no hex colors allowed)
 ✅ TypeScript strict mode enabled
 ✅ Vitest configured (70% coverage threshold)
 ✅ Git hooks for quality (pre-commit, pre-push)
@@ -127,7 +127,7 @@ Documentation:
   docs/DESIGN.md             ~7.4 KB
   docs/TESTING.md            ~9.9 KB
   docs/HUSKY.md              ~6.6 KB
-  docs/TAILWIND_DAISYUI_CHEATSHEET.md ~9.0 KB
+  docs/TAILWIND_SHADCN_CHEATSHEET.md
   docs/COMPONENT_TEMPLATE.vue ~4.3 KB
   CLAUDE.md                  ~3.5 KB
   README.md                  ~3.5 KB
@@ -146,7 +146,7 @@ Total: ~62 KB (mostly documentation)
 - @nuxt/devtools
 
 ### Dev Dependencies (15)
-- Styling: @nuxtjs/tailwindcss, tailwindcss, postcss, autoprefixer, daisyui
+- Styling: @tailwindcss/vite, tailwindcss, shadcn-nuxt, reka-ui, tw-animate-css
 - Testing: vitest, @vitest/ui, @vitest/coverage-v8, @vue/test-utils, happy-dom
 - Quality: husky
 - Types: typescript, vue-tsc
@@ -162,7 +162,7 @@ Total: ~62 KB (mostly documentation)
 1. **Before starting:** Read `README_SCAFFOLD.md`
 2. **Setup:** Run `./INIT_NEW_PROJECT.sh "Your Project Name"`
 3. **First day:** Read `CLAUDE.md` and `docs/DESIGN.md`
-4. **Writing code:** Reference `docs/TAILWIND_DAISYUI_CHEATSHEET.md` for classes
+4. **Writing code:** Reference `docs/TAILWIND_SHADCN_CHEATSHEET.md` for classes
 5. **Building components:** Use `docs/COMPONENT_TEMPLATE.vue` as template
 6. **Writing tests:** See `docs/TESTING.md` for patterns
 7. **Adding to database:** Follow `migrations/README.md`

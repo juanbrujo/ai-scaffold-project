@@ -88,13 +88,13 @@ import { classNames } from '~/utils/helpers'
 
 describe('classNames', () => {
   it('should combine class strings', () => {
-    const result = classNames('btn', 'btn-primary', 'btn-lg')
-    expect(result).toBe('btn btn-primary btn-lg')
+  const result = classNames('inline-flex', 'bg-primary', 'text-primary-foreground')
+  expect(result).toBe('inline-flex bg-primary text-primary-foreground')
   })
 
   it('should filter out falsy values', () => {
-    const result = classNames('btn', false, 'btn-primary', null, undefined)
-    expect(result).toBe('btn btn-primary')
+  const result = classNames('inline-flex', false, 'bg-primary', null, undefined)
+  expect(result).toBe('inline-flex bg-primary')
   })
 })
 ```
@@ -164,7 +164,7 @@ describe('Button Component', () => {
     const wrapper = mount(Button, {
       props: { variant: 'primary' }
     })
-    expect(wrapper.classes()).toContain('btn-primary')
+    expect(wrapper.classes()).toContain('bg-primary')
   })
 })
 ```

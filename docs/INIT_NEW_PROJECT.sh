@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================================
-# 🚀 Nuxt 4 + Tailwind 4 + DaisyUI 5 + Pinia + Vitest Project Initializer
+# 🚀 Nuxt 4 + Tailwind 4 + shadcn-vue + Pinia + Vitest Project Initializer
 # ============================================================================
 # Interactive script to initialize a new project from this scaffold
 # ============================================================================
@@ -105,7 +105,7 @@ echo -e "    🔷 TypeScript 5.3+       (Type safety)"
 echo ""
 echo -e "  ${BOLD}Styling:${NC}"
 echo -e "    🎨 Tailwind CSS 4.3+     (Utility-first CSS)"
-echo -e "    🌸 DaisyUI 4.12+         (Component library)"
+echo -e "    🧩 shadcn-vue             (Component library)"
 echo ""
 echo -e "  ${BOLD}State Management:${NC}"
 echo -e "    🏪 Pinia 3.0+           (State management)"
@@ -122,7 +122,7 @@ echo -e "    🗄️  NeonDB/PostgreSQL     (Serverless)"
 echo -e "    📋 Migrations included"
 echo ""
 echo -e "  ${BOLD}Documentation:${NC}"
-echo -e "    📚 Design System         (Tailwind + DaisyUI)"
+echo -e "    📚 Design System         (Tailwind + shadcn-vue)"
 echo -e "    📚 Testing Guide         (Vitest patterns)"
 echo -e "    📚 Git Hooks Guide       (Husky automation)"
 echo -e "    📚 Quick Reference       (Copy-paste ready)"
@@ -248,7 +248,7 @@ echo ""
 
 print_info "Project created with:"
 echo "  ✓ Nuxt 4 + Vue 3 + TypeScript"
-echo "  ✓ Tailwind CSS + DaisyUI"
+echo "  ✓ Tailwind CSS + shadcn-vue"
 echo "  ✓ Pinia state management"
 echo "  ✓ Vitest (70% coverage threshold)"
 echo "  ✓ Husky Git hooks (pre-commit, pre-push)"

@@ -32,7 +32,7 @@ The new `INIT_NEW_PROJECT.sh` script is fully interactive with colors, emojis, a
 
   Styling:
     🎨 Tailwind CSS 4.3+     (Utility-first CSS)
-    🌸 DaisyUI 4.12+         (Component library)
+    🧩 shadcn-vue             (Component library)
 
   State Management:
     🏪 Pinia 3.0+           (State management)
@@ -49,7 +49,7 @@ The new `INIT_NEW_PROJECT.sh` script is fully interactive with colors, emojis, a
     📋 Migrations included
 
   Documentation:
-    📚 Design System         (Tailwind + DaisyUI)
+    📚 Design System         (Tailwind + shadcn-vue)
     📚 Testing Guide         (Vitest patterns)
     📚 Git Hooks Guide       (Husky automation)
     📚 Quick Reference       (Copy-paste ready)
@@ -106,7 +106,7 @@ Your project "My Awesome Blog" is ready! 🎉
 
 ℹ Project created with:
   ✓ Nuxt 4 + Vue 3 + TypeScript
-  ✓ Tailwind CSS + DaisyUI
+  ✓ Tailwind CSS + shadcn-vue
   ✓ Pinia state management
   ✓ Vitest (70% coverage threshold)
   ✓ Husky Git hooks (pre-commit, pre-push)

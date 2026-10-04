@@ -5,7 +5,7 @@ Complete project documentation and guides for this scaffold/project.
 ## 📚 Documentation Files
 
 ### [DESIGN.md](DESIGN.md)
-Complete design system guide using Tailwind CSS + DaisyUI.
+Complete design system guide using Tailwind CSS + shadcn-vue.
 - DO's and DON'Ts
 - Component guidelines (buttons, cards, forms, alerts, modals)
 - Color tokens and spacing scale
@@ -37,9 +37,9 @@ Git hooks automation guide.
 
 **Hooks run automatically. See here if they're not working.**
 
-### [TAILWIND_DAISYUI_CHEATSHEET.md](TAILWIND_DAISYUI_CHEATSHEET.md)
-Quick reference for common Tailwind + DaisyUI patterns.
-- DaisyUI component examples (copy-paste ready)
+### [TAILWIND_SHADCN_CHEATSHEET.md](TAILWIND_SHADCN_CHEATSHEET.md)
+Quick reference for common Tailwind + shadcn-vue patterns.
+- shadcn-vue component examples (copy-paste ready)
 - Tailwind utility classes
 - Responsive design patterns
 - State modifiers (hover, focus, active, disabled)
@@ -51,7 +51,7 @@ Quick reference for common Tailwind + DaisyUI patterns.
 ### [COMPONENT_TEMPLATE.vue](COMPONENT_TEMPLATE.vue)
 Example Vue component showcasing best practices.
 - Proper component structure
-- Tailwind + DaisyUI usage
+- Tailwind + shadcn-vue usage
 - State management (loading, error, success)
 - Accessibility patterns
 - Keyboard navigation
@@ -63,7 +63,7 @@ Example Vue component showcasing best practices.
 
 1. **New to the project?** → Start with main `CLAUDE.md` and this `README.md`
 2. **Building components?** → Check [DESIGN.md](DESIGN.md) + [COMPONENT_TEMPLATE.vue](COMPONENT_TEMPLATE.vue)
-3. **Need quick syntax?** → Use [TAILWIND_DAISYUI_CHEATSHEET.md](TAILWIND_DAISYUI_CHEATSHEET.md)
+3. **Need quick syntax?** → Use [TAILWIND_SHADCN_CHEATSHEET.md](TAILWIND_SHADCN_CHEATSHEET.md)
 4. **Writing tests?** → See [TESTING.md](TESTING.md)
 5. **Git hook issues?** → Check [HUSKY.md](HUSKY.md)
 
@@ -77,8 +77,8 @@ Example Vue component showcasing best practices.
 
 ## 💡 Key Principles
 
-- **Tailwind + DaisyUI only** — No other CSS frameworks
-- **No raw hex colors** — Use theme tokens (`text-error`, `bg-primary`)
+- **Tailwind + shadcn-vue only** — No other CSS frameworks
+- **No raw hex colors** — Use semantic tokens (`text-destructive`, `bg-primary`)
 - **Accessibility first** — WCAG 2.2 AA compliance
 - **Mobile-first responsive** — Use `sm:`, `md:`, `lg:` prefixes
 - **Semantic HTML** — Proper form, button, link tags
@@ -89,7 +89,7 @@ Example Vue component showcasing best practices.
 ## 📖 External Resources
 
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [DaisyUI Docs](https://daisyui.com/components)
+- [shadcn-vue Docs](https://www.shadcn-vue.com/)
 - [Nuxt Documentation](https://nuxt.com)
 - [Vue 3 Guide](https://vuejs.org)
 - [Vitest Docs](https://vitest.dev)

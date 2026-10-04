@@ -4,7 +4,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-08-07',
   devtools: { enabled: true },
 
-  modules: ['@pinia/nuxt', '@nuxt/eslint'],
+  modules: ['@pinia/nuxt', '@nuxt/eslint', 'shadcn-nuxt'],
+
+  shadcn: {
+    prefix: 'Ui',
+    componentDir: '@/components/ui'
+  },
 
   css: ['~/assets/css/main.css'],
 

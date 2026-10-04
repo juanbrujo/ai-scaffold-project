@@ -7,7 +7,7 @@ Brief description of what this project does.
 ## Tech Stack
 
 - **Frontend**: Nuxt 4, Vue 3, TypeScript
-- **Styling**: Tailwind CSS 4, DaisyUI 5
+- **Styling**: Tailwind CSS 4, shadcn-vue (Reka UI)
 - **State Management**: Pinia
 - **Testing**: Vitest (70% coverage threshold)
 - **Database**: NeonDB (PostgreSQL)
@@ -72,30 +72,30 @@ pnpm lint             # Lint code
 ```
 .
 ├── docs/              # 📚 Documentation (guides, design system)
-│   ├── DESIGN.md      # Tailwind + DaisyUI design system
+│   ├── DESIGN.md      # Tailwind + shadcn-vue design system
 │   ├── TESTING.md     # Testing guide
 │   ├── HUSKY.md       # Git hooks guide
 │   └── ...
 ├── migrations/        # 🗄️ Database migrations (.sql files)
-├── pages/             # Routes (auto-routed by Nuxt)
-├── components/        # Reusable Vue components
-├── composables/       # Composition API hooks
-├── stores/            # Pinia state stores
+├── app/
+│   ├── pages/         # Routes (auto-routed by Nuxt)
+│   ├── components/    # Reusable Vue components and shadcn-vue UI source
+│   ├── composables/   # Composition API hooks
+│   └── stores/        # Pinia stores
 ├── server/
 │   ├── api/           # Backend API routes
 │   └── utils/         # Server utilities (db connection)
 ├── tests/             # Tests with Vitest
-├── assets/            # CSS and static assets
-└── layouts/           # Page layouts
+└── app/assets/        # CSS and static assets
 ```
 
 ## Documentation
 
 - **[CLAUDE.md](CLAUDE.md)** — Development guide and conventions
-- **[docs/DESIGN.md](docs/DESIGN.md)** — Design system (Tailwind + DaisyUI)
+- **[docs/DESIGN.md](docs/DESIGN.md)** — Design system (Tailwind + shadcn-vue)
 - **[docs/TESTING.md](docs/TESTING.md)** — Testing guide (Vitest)
 - **[docs/HUSKY.md](docs/HUSKY.md)** — Git hooks automation
-- **[docs/TAILWIND_DAISYUI_CHEATSHEET.md](docs/TAILWIND_DAISYUI_CHEATSHEET.md)** — Quick reference
+- **[docs/TAILWIND_SHADCN_CHEATSHEET.md](docs/TAILWIND_SHADCN_CHEATSHEET.md)** — Quick reference
 - **[migrations/README.md](migrations/README.md)** — Database migrations
 
 ## Development Workflow
@@ -106,10 +106,10 @@ git checkout -b feature/my-feature
 ```
 
 ### 2. Make Changes
-- Create components in `components/`
-- Add pages in `pages/`
+- Create components in `app/components/`
+- Add pages in `app/pages/`
 - Write tests in `tests/`
-- Use Tailwind + DaisyUI for styling
+- Use Tailwind + shadcn-vue for styling
 
 ### 3. Before Committing
 ```bash
@@ -176,11 +176,11 @@ See `migrations/README.md` for complete migration guide.
 
 ## Styling
 
-Uses **Tailwind CSS 4** + **DaisyUI 5** for all styling.
+Uses **Tailwind CSS 4** + **shadcn-vue** for all styling.
 
-- ✅ Use DaisyUI components: `btn`, `card`, `alert`, `modal`, etc.
+- ✅ Use shadcn-vue components: `UiButton`, `UiCard`, `UiAlert`, `UiDialog`, etc.
 - ✅ Use Tailwind utilities: `flex`, `gap-4`, `p-6`, `text-lg`
-- ✅ Use theme tokens: `text-base-content`, `bg-base-100`, `border-base-300`
+- ✅ Use theme tokens: `text-foreground`, `bg-background`, `border-border`
 - ❌ No raw hex colors
 - ❌ No custom CSS (unless absolutely necessary)
 - ❌ No other UI libraries (Bootstrap, Material, etc.)
@@ -223,7 +223,7 @@ pnpm preview
 - [Nuxt Documentation](https://nuxt.com)
 - [Vue 3 Guide](https://vuejs.org)
 - [Tailwind CSS](https://tailwindcss.com)
-- [DaisyUI Components](https://daisyui.com)
+- [shadcn-vue Components](https://www.shadcn-vue.com/)
 - [Pinia](https://pinia.vuejs.org/)
 - [Vitest](https://vitest.dev)
 
