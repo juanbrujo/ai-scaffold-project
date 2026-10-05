@@ -22,7 +22,8 @@ Brief description of what this project does.
 pnpm install
 ```
 
-> This project uses **pnpm** as package manager. Install it: `npm i -g pnpm`
+> This project uses **pnpm 11**, pinned in `packageManager`. Enable it with `corepack enable`.
+> The pre-commit hook needs `gitleaks` (`brew install gitleaks`).
 
 ### Environment Setup
 
@@ -63,8 +64,9 @@ pnpm test:coverage    # Generate coverage report (70% threshold)
 pnpm lint             # Lint code
 
 # Git Hooks (Automatic)
-# - Pre-commit: Tests must pass
-# - Pre-push: Build must succeed
+# - Pre-commit: no secrets (gitleaks), lint on staged files, tests pass
+# - Commit-msg: Conventional Commits
+# - Pre-push: typecheck and build succeed
 ```
 
 ## Project Structure
@@ -191,8 +193,9 @@ See `docs/DESIGN.md` for complete design system.
 
 **Husky** automatically enforces quality:
 
-- **Pre-commit**: Tests must pass before creating a commit
-- **Pre-push**: Build must succeed before pushing to remote
+- **Pre-commit**: No secrets (gitleaks), no lint errors on staged files, tests pass
+- **Commit-msg**: Message follows Conventional Commits
+- **Pre-push**: Typecheck and build succeed before pushing to remote
 
 If checks fail, the action is blocked. Fix the issue and try again.
 

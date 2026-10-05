@@ -1,2 +1,9 @@
-# Run tests before commit (single-run, not watch mode)
+# Secrets must be caught before they exist in history; afterwards only rotation helps.
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks git --pre-commit --staged --redact --no-banner
+else
+  echo "gitleaks is not installed (brew install gitleaks); commit blocked." >&2
+  exit 1
+fi
+pnpm exec lint-staged
 pnpm test:run

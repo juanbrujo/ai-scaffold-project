@@ -1,0 +1,10 @@
+# pnpm 11 blocks dependency build scripts unless they are listed here.
+allowBuilds:
+  esbuild: true
+  '@parcel/watcher': true
+  unrs-resolver: false
+  vue-demi: false
+
+# typescript-eslint does not support TS 7 yet; keep every peer on 5.x.
+overrides:
+  typescript: ^5.9.3

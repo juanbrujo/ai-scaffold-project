@@ -12,7 +12,7 @@ scaffold/
 ├── tsconfig.json                   # TypeScript strict mode config
 ├── vitest.config.ts                # Vitest + coverage config (70% threshold)
 ├── postcss.config.ts               # PostCSS plugins config
-├── .pnpmrc                         # pnpm settings (shamefully-hoist, etc.)
+├── pnpm-workspace.yaml             # pnpm 11 settings (allowBuilds, overrides)
 ├── .gitignore                      # Git ignore rules
 ├── .eslintignore                   # ESLint ignore rules
 ├── .env.example                    # Environment template
@@ -121,7 +121,7 @@ Configuration:
   tsconfig.json              ~0.8 KB
   vitest.config.ts           ~1.2 KB
   postcss.config.ts          ~0.1 KB
-  .pnpmrc                    ~0.1 KB
+  pnpm-workspace.yaml        ~0.3 KB
 
 Documentation:
   docs/DESIGN.md             ~7.4 KB
