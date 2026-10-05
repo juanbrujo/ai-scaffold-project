@@ -41,11 +41,22 @@ never become LTS, and are excluded from the range above. Things may appear to
 work on them, but you are off the tested matrix.
 
 pnpm only **warns** on an engine mismatch. To make it a hard failure, add to
-`.pnpmrc`:
+`pnpm-workspace.yaml`:
 
+```yaml
+engineStrict: true
 ```
-engine-strict=true
-```
+
+## pnpm 11
+
+The project pins pnpm 11 in `packageManager` (Corepack picks it up). pnpm 11
+reads its settings from `pnpm-workspace.yaml`, not from `.pnpmrc`:
+
+- `allowBuilds` lists which dependencies may run install scripts. A new
+  dependency with a build script fails `pnpm install` until you add it there
+  with `true` or `false`.
+- `overrides.typescript` keeps TypeScript on 5.x, because typescript-eslint
+  does not support TypeScript 7 yet.
 
 ## Project Commands
 
@@ -189,14 +200,14 @@ beforeEach(() => setActivePinia(createPinia()))
 - See `docs/TESTING.md` for complete guide
 
 ### Husky Git Hooks (Automated)
-- **Pre-commit**: Runs `pnpm test` before commit
-  - Prevents committing broken code
-  - If tests fail, commit is blocked
-- **Pre-push**: Runs `pnpm build` before push
-  - Ensures production build works
-  - If build fails, push is blocked
+- **Pre-commit**: `gitleaks` on staged changes, `lint-staged` (ESLint `--fix`
+  on staged files) and `pnpm test:run`
+- **Commit-msg**: `commitlint` enforces Conventional Commits (`feat:`, `fix:`...)
+- **Pre-push**: `pnpm typecheck` and `pnpm build`
 
-Bypass with: `git commit --no-verify` or `git push --no-verify` (not recommended!)
+**Never use `--no-verify`.** The pre-commit hook is the only point where a
+secret can be stopped before it exists in history; once committed, rotating the
+credential is the only real fix. If a hook fails, fix the cause.
 
 See `docs/HUSKY.md` for details.
 

@@ -69,7 +69,7 @@ Copy individual files from this scaffold to your new project:
 - `tsconfig.json` — TypeScript config
 - `vitest.config.ts` — Test configuration
 - `postcss.config.ts` — PostCSS setup
-- `.pnpmrc` — pnpm settings
+- `pnpm-workspace.yaml` — pnpm 11 settings (allowBuilds, overrides)
 - `.gitignore` — Git ignore rules
 - `.eslintignore` — ESLint ignore
 - `.husky/` — Git hooks
@@ -88,7 +88,7 @@ scaffold/
 ├── tsconfig.json                       # TypeScript config
 ├── vitest.config.ts                    # Test configuration
 ├── postcss.config.ts                   # PostCSS setup
-├── .pnpmrc                             # pnpm configuration
+├── pnpm-workspace.yaml                  # pnpm 11 configuration
 ├── .gitignore                          # Git ignore rules
 ├── .eslintignore                       # ESLint ignore rules
 ├── .env.example                        # Environment template
@@ -156,7 +156,7 @@ pnpm dev
 - **tsconfig.json** — TypeScript strict mode configuration
 - **vitest.config.ts** — Vitest testing setup with coverage (70% threshold)
 - **postcss.config.ts** — PostCSS plugin configuration
-- **.pnpmrc** — pnpm-specific settings
+- **pnpm-workspace.yaml** — pnpm 11 settings (allowBuilds, TypeScript override)
 
 ### Git & Quality
 - **.gitignore** — Files to exclude from version control

@@ -10,19 +10,30 @@ Husky enables Git hooks to run automatically at different stages:
 - **commit-msg**: Validate commit message format
 - And more...
 
+## Requirements
+
+- `gitleaks` installed locally (`brew install gitleaks`). Without it the
+  pre-commit hook blocks the commit.
+
 ## Current Hooks
 
 ### Pre-Commit Hook
 **When**: Every time you run `git commit`  
-**What it does**: Runs `pnpm test`  
-**If tests fail**: ❌ Commit is blocked  
-**Purpose**: Prevent broken code from being committed
+**What it does**: `gitleaks git --pre-commit --staged`, then `lint-staged` (ESLint `--fix` on staged `.ts`, `.vue`, `.mjs`), then `pnpm test:run`  
+**If anything fails**: ❌ Commit is blocked  
+**Purpose**: Stop secrets, lint errors and broken code before they enter history
+
+### Commit-Msg Hook
+**When**: Every time you run `git commit`  
+**What it does**: `commitlint` with `@commitlint/config-conventional`  
+**If the message is invalid**: ❌ Commit is blocked  
+**Purpose**: Enforce Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`...)
 
 ### Pre-Push Hook
 **When**: Every time you run `git push`  
-**What it does**: Runs `pnpm build`  
-**If build fails**: ❌ Push is blocked  
-**Purpose**: Ensure production builds work before pushing to remote
+**What it does**: Runs `pnpm typecheck` and `pnpm build`  
+**If either fails**: ❌ Push is blocked  
+**Purpose**: Ensure types and the production build are fine before pushing
 
 ## Workflow Example
 
@@ -54,28 +65,23 @@ git push
 git push
 ```
 
-## Bypassing Hooks (When Necessary)
+## Do Not Bypass Hooks
 
-### Skip Pre-Commit Hook
-```bash
-# NOT RECOMMENDED - Use only in emergencies
-git commit --no-verify -m "Emergency fix"
-```
+Do not use `git commit --no-verify` or `git push --no-verify`. The pre-commit
+hook is the only point where a secret can be stopped before it exists in
+history. If a secret reaches a commit, **rotate the credential first**:
+removing it from history does not invalidate it.
 
-### Skip Pre-Push Hook
-```bash
-# NOT RECOMMENDED - Use only in emergencies
-git push --no-verify
-```
-
-⚠️ **Warning**: Bypassing hooks defeats their purpose. Only do this if absolutely necessary.
+If gitleaks reports a false positive, add a narrow rule to `.gitleaks.toml`
+and explain it in the PR; never add a broad allowlist.
 
 ## File Locations
 
 ```
 .husky/
-├── pre-commit      # Runs tests on commit
-├── pre-push        # Runs build on push
+├── pre-commit      # gitleaks + lint-staged + tests on commit
+├── commit-msg      # commitlint on commit
+├── pre-push        # typecheck + build on push
 └── _/
     └── husky.sh    # Husky shell script (auto-generated)
 ```
@@ -88,6 +94,7 @@ ls -la .husky/
 
 # View hook content
 cat .husky/pre-commit
+cat .husky/commit-msg
 cat .husky/pre-push
 ```
 
@@ -316,7 +323,8 @@ rm -rf .husky
 
 | Hook | Runs | Purpose | Block on Failure |
 |------|------|---------|-----------------|
-| `pre-commit` | `git commit` | Test code | ✅ Yes |
-| `pre-push` | `git push` | Build check | ✅ Yes |
+| `pre-commit` | `git commit` | Secrets, lint, tests | ✅ Yes |
+| `commit-msg` | `git commit` | Conventional Commits | ✅ Yes |
+| `pre-push` | `git push` | Typecheck, build | ✅ Yes |
 
-**Bypass**: Add `--no-verify` flag (not recommended)
+**Bypass**: not allowed — fix the cause instead.

@@ -1,2 +1,2 @@
-# Verify build works before pushing
+pnpm typecheck
 pnpm build
